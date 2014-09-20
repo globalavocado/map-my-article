@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang='en'>
+	<head>
+		<title>Map My Article</title>
+		
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,400italic' rel='stylesheet' type='text/css'>
+
+		<link href='feedmapper.css' rel='stylesheet' type='text/css'>
+		<meta charset='utf8'>
+
+	</head>
+
+	<body>
+		<h1>Map My Article</h1>
+		
+		<h2>search for a global development article on the Guardian</h2>
+			<form id='article-search'>
+				<input id='country' placeholder='search for a country name'>
+				<button type='submit'>search</button>
+			</form>
+<br clear="all">
+         
+	<main class="article-container">
+
+		<!-- <template id="article-template"> -->
+
+			<article class="summary">
+		
+				<section class="title">
+			
+				<a href="http://www.theguardian.com/global-development/2014/sep/19/ethiopia-agriculture-hotline-opportunities-farmers">Ethiopia’s agriculture hotline provides growing opportunities for farmers</a></p>
+				</strong>
+		
+			</article>
+	<!-- 
+		</template>
+	 -->
+	</main>
+
+
+	<script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
+
+	<script>
+	$(document).ready(function(){
+		$('#article-search').on('submit', function(e){
+			e.preventDefault();
+
+			var url = 'http://content.guardianapis.com/search?q=' + $('#country').val() + '&api-key=test';
+			var searchData = $.get(url, function(response){
+				console.log(response);
+			}) 
+			
+		})
+	})
+	</script>
+	</body>
