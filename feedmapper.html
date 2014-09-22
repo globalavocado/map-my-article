@@ -41,8 +41,14 @@
 			
 			// below is the callback function
 			var searchData = $.get(url, function(results){
-				
-					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][0]['webUrl'] + '"> ' + results['response']['results'][0]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+
+				if(results.response.total == 0) {
+					alert('Could not find any content.');
+
+				} else {
+					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][0]['webUrl'] + '" target="_blank"> ' + results['response']['results'][0]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+				}
+
 			})
 		})
 	})
