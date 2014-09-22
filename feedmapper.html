@@ -13,7 +13,7 @@
 	<body>
 		<h1>Map My Article</h1>
 		
-		<h2>search for a global development article on the Guardian</h2>
+		<p>search for a global development article on the Guardian</p>
 			<form id='article-search'>
 				<input id='country' placeholder='search for a country name'>
 				<button type='submit'>search</button>
@@ -24,14 +24,6 @@
 
 		<!-- <template id="article-template"> -->
 
-			<article class="summary">
-		
-				<section class="title">
-			
-				<a href="http://www.theguardian.com/global-development/2014/sep/19/ethiopia-agriculture-hotline-opportunities-farmers">Ethiopia’s agriculture hotline provides growing opportunities for farmers</a></p>
-				</strong>
-		
-			</article>
 	<!-- 
 		</template>
 	 -->
@@ -46,10 +38,12 @@
 			e.preventDefault();
 
 			var url = 'http://content.guardianapis.com/search?q=' + $('#country').val() + '&api-key=test';
-			var searchData = $.get(url, function(response){
-				console.log(response);
-			}) 
 			
+			// below is the callback function
+			var searchData = $.get(url, function(results){
+				
+					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][0]['webUrl'] + '"> ' + results['response']['results'][0]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+			})
 		})
 	})
 	</script>
