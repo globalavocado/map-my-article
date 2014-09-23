@@ -37,7 +37,7 @@
 		$('#article-search').on('submit', function(e){
 			e.preventDefault();
 
-			var url = 'http://content.guardianapis.com/search?q=' + $('#country').val() + '&api-key=test';
+			var url = 'http://content.guardianapis.com/search?section=global-development&q=' + $('#country').val() + '&api-key=test';
 			
 			// below is the callback function
 			var searchData = $.get(url, function(results){
@@ -47,6 +47,15 @@
 
 				} else {
 					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][0]['webUrl'] + '" target="_blank"> ' + results['response']['results'][0]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][1]['webUrl'] + '" target="_blank"> ' + results['response']['results'][1]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][2]['webUrl'] + '" target="_blank"> ' + results['response']['results'][2]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][3]['webUrl'] + '" target="_blank"> ' + results['response']['results'][3]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][4]['webUrl'] + '" target="_blank"> ' + results['response']['results'][4]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][5]['webUrl'] + '" target="_blank"> ' + results['response']['results'][5]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][6]['webUrl'] + '" target="_blank"> ' + results['response']['results'][6]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][7]['webUrl'] + '" target="_blank"> ' + results['response']['results'][7]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][8]['webUrl'] + '" target="_blank"> ' + results['response']['results'][8]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
+					$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][9]['webUrl'] + '" target="_blank"> ' + results['response']['results'][9]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
 				}
 
 			})
