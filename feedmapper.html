@@ -4,8 +4,9 @@
 		<title>Map My Article</title>
 		
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,400italic' rel='stylesheet' type='text/css'>
-
-		<link href='feedmapper.css' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/leaflet.css" />
+		<link href='css/feedmapper.css' rel='stylesheet' type='text/css'>
+		
 		<meta charset='utf8'>
 
 	</head>
@@ -22,15 +23,27 @@
          
 	<main class="article-container">
 
+		<section>
 		<!-- <template id="article-template"> -->
 
 	<!-- 
 		</template>
 	 -->
+	</section>
 	</main>
+
+	<aside>
+
+		<div id="map">
+		</div>
+	
+	</aside>
 
 
 	<script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
+	<script src='js/leaflet.js'></script>	
+	<script src='js/map.js'></script>
+
 
 	<script>
 	$(document).ready(function(){
@@ -62,4 +75,5 @@
 		})
 	})
 	</script>
+
 	</body>

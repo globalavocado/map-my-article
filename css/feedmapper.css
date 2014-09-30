@@ -1,0 +1,24 @@
+body {
+
+font-family: 'Ubuntu', sans-serif;
+
+}
+
+.article-container {
+	float: left;
+    width: 40%;
+    margin-left: 5px;
+    padding: 1em;
+	margin-top: 1px;
+}
+
+.map-container{
+	margin-left: 460px;
+	width: 40%;
+    padding: 1em;
+    margin-right: 10px;
+    width: 450px;
+	float: right;
+	margin-left: 10px;
+	clear: both;
+}
