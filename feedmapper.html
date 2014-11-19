@@ -5,6 +5,7 @@
 		
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,400italic' rel='stylesheet' type='text/css'>
       <link rel='stylesheet' href='css/feedmapper.css' />
+      <script src="js/jsonlayer.js" type="text/javascript"></script>
       <link rel="stylesheet" href="chosen.css">  
 	<link rel="stylesheet" href="css/leaflet.css" />
 	
@@ -205,6 +206,9 @@
 	$(document).ready(function(){
 		$('#article-search').on('submit', function(e){
 			e.preventDefault();
+
+                  //remove results first
+                  // $('.summary').remove()
 
 			var url = 'http://content.guardianapis.com/search?section=global-development&page-size=20&q=' + $('#country').val() + '&api-key=test';
 			
