@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/globalavocado/map-my-article/badges/gpa.svg)](https://codeclimate.com/github/globalavocado/map-my-article)
+
 <h1>Map My Article</h1>
 
 This web app does a fuzzy search on the <a href="http://www.isi-web.org/component/content/article/5-root/root/81-developing">ISI list of developing countries for 2014</a>. It uses the Guardian API to return a list of news article links and then the Leaflet API displays a MapBox base map of that country next to the list.
