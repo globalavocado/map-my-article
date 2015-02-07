@@ -137,7 +137,7 @@ i { font-style: italic; }
   margin-top: -10px;
   display: block;
   height: 58px;
-  background: #F36C00 url(oss-credit.png) no-repeat 20px 22px;
+  background: #F36C00 url(../js/images/oss-credit.png) no-repeat 20px 22px;
   padding: 22px 20px 12px 20px;
   text-indent: 120%; /* stupid padding */
   white-space: nowrap;
