@@ -1,0 +1,9 @@
+var countrylist = [ "Afghanistan", "Algeria", "Angola", "Argentina", "Armenia", "Azerbaijan", "Bangladesh", "Belarus", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Central African Republic", "Chad", "China", "Colombia", "Comoros", "Republic of the Congo (Brazzaville)", "Democratic Republic of the Congo (Kinshasa)", "Costa Rica", "Côte d’Ivoire (Ivory Coast)", "Cuba", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Eritrea", "Ethiopia", "Fiji", "Gabon", "Gambia", "Georgia", "Ghana", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "India", "Indonesia", "Iran", "Iraq", "Jamaica", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kyrgyzstan", "Laos", "Lebanon", "Lesotho", "Liberia", "Libya", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar [Burma]", "Namibia", "Nepal", "Nicaragua", "Niger", "Nigeria", "North Korea", "Pakistan", "Palestinian Territories", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Romania", "Russia", "Rwanda", "Samoa", "São Tomé and Príncipe", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Solomon Islands", "Somalia", "South Africa" ,"South Sudan", "Sri Lanka", "Sudan", "Suriname", "Swaziland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Western Sahara (Morocco)", "Yemen", "Zambia", "Zimbabwe"];    
+
+var sel = document.getElementById('country');
+for(var i = 0; i < countrylist.length; i++) {
+    var opt = document.createElement('option');
+    opt.innerHTML = countrylist[i];
+    opt.value = countrylist[i];
+    sel.appendChild(opt);
+}
