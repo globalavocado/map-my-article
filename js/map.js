@@ -20,7 +20,7 @@ L.tileLayer('http://{s}.tiles.mapbox.com/v3/{your-MapboxID-goes-here}/{z}/{x}/{y
 //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 // }).addTo(map);
 
-map.setView( new L.LatLng(19.5, -72), 7 );
+map.setView( new L.LatLng(0, 0), 2 );
 
 L.geoJson( haiti, {
     style: function (feature) {
