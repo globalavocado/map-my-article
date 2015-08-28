@@ -6,7 +6,7 @@ This web app does a fuzzy search on the <a href="http://www.isi-web.org/componen
 
 <h2>objectives</h2>
 
-The map is meant to zoom to the country that is searched for, every time a new search is performed. The name of that country is retrieved from the search value. I plan to implement OpenLayers3 to animate the map window.
+The map is meant to zoom to the country that is searched for, every time a new search is performed. The name of that country is retrieved from the search value. I plan to implement OpenLayers3 <a href="http://openlayers.org/en/v3.4.0/examples/center.html?q=position">Advanced View Positioning</a> to animate the map window.
 
 <h2>Technologies used</h2>
 - HTML5
