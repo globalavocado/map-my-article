@@ -1,30 +1,52 @@
-// Ethiopia
-// var map = L.map('map').setView([9.644, 39.683], 6);
-
-// Sudan and South Sudan
-// var map = L.map('map').setView([13.832, 30.050], 5);
-
-	//Indonesia
-// var map = L.map('map').setView([-2.53, 120.43], 4);
-
-map = new L.Map('map');
-
-L.tileLayer('http://{s}.tiles.mapbox.com/v3/{your-MapboxID-goes-here}/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18
-    })
-  .addTo(map);
-
-// comment this out if you want to use OpenStreetMap instead of signing up for MapBox
-// L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-//     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-// }).addTo(map);
-
-map.setView( new L.LatLng(0, 0), 2 );
-
-L.geoJson( haiti, {
-    style: function (feature) {
-        return { opacity: 0.1, fillOpacity: 0.5, fillColor: "#FF7F50" };
-    }
+var source = new ol.source.Vector({
+  url: 'js/haiti.geojson',
+  format: new ol.format.GeoJSON()
+});
+var style = new ol.style.Style({
+  fill: new ol.style.Fill({
+    color: 'rgba(255, 255, 255, 0.6)'
+  }),
+  stroke: new ol.style.Stroke({
+    color: '#319FD3',
+    width: 1
   })
-  .addTo(map);
+});
+var vectorLayer = new ol.layer.Vector({
+  source: source,
+  style: style
+});
+var view = new ol.View({
+  center: [0, 0],
+  zoom: 2
+});
+var map = new ol.Map({
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.OSM()
+    }),
+    vectorLayer
+  ],
+  target: 'map',
+  controls: ol.control.defaults({
+    attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+      collapsible: false
+    })
+  }),
+  view: view
+});
+
+// function of button
+
+var zoomtocountry = document.getElementById('zoomtocountry');
+zoomtocountry.addEventListener('click', function() {
+  var feature = source.getFeatures()[0];
+  var polygon = /** @type {ol.geom.SimpleGeometry} */ (feature.getGeometry());
+  var size = /** @type {ol.Size} */ (map.getSize());
+  view.fit(
+      polygon,
+      size,
+      {
+        padding: [170, 50, 30, 150]
+      }
+  );
+}, false);
