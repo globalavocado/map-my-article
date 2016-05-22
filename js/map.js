@@ -1,52 +1,45 @@
-var source = new ol.source.Vector({
-  url: 'js/haiti.geojson',
-  format: new ol.format.GeoJSON()
-});
-var style = new ol.style.Style({
-  fill: new ol.style.Fill({
-    color: 'rgba(255, 255, 255, 0.6)'
-  }),
-  stroke: new ol.style.Stroke({
-    color: '#319FD3',
-    width: 1
-  })
-});
-var vectorLayer = new ol.layer.Vector({
-  source: source,
-  style: style
-});
-var view = new ol.View({
-  center: [0, 0],
-  zoom: 2
-});
-var map = new ol.Map({
-  layers: [
-    new ol.layer.Tile({
-      source: new ol.source.OSM()
-    }),
-    vectorLayer
-  ],
-  target: 'map',
-  controls: ol.control.defaults({
-    attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
-      collapsible: false
-    })
-  }),
-  view: view
-});
+      var searchcountry = ol.proj.fromLonLat([-72, 19.5]);
+      var europe = ol.proj.fromLonLat([2.5, 51.9]);
+      
+      var view = new ol.View({
+        // the view's initial state
+        center: europe,
+        zoom: 6
+      });
 
-// function of button
+      var map = new ol.Map({
+        layers: [
+          new ol.layer.Tile({
+            preload: 4,
+            source: new ol.source.OSM()
+          })
+        ],
+        // Improve user experience by loading tiles while animating. Will make
+        // animations stutter on mobile or slow devices.
+        loadTilesWhileAnimating: true,
+        target: 'map',
+        controls: ol.control.defaults({
+          attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+            collapsible: false
+          })
+        }),
+        view: view
+      });
 
-var zoomtocountry = document.getElementById('zoomtocountry');
-zoomtocountry.addEventListener('click', function() {
-  var feature = source.getFeatures()[0];
-  var polygon = /** @type {ol.geom.SimpleGeometry} */ (feature.getGeometry());
-  var size = /** @type {ol.Size} */ (map.getSize());
-  view.fit(
-      polygon,
-      size,
-      {
-        padding: [170, 50, 30, 150]
-      }
-  );
-}, false);
+      var flyToCountry = document.getElementById('fly-to-country');
+      flyToCountry.addEventListener('click', function() {
+        var duration = 2000;
+        var start = +new Date();
+        var pan = ol.animation.pan({
+          duration: duration,
+          source: /** @type {ol.Coordinate} */ (view.getCenter()),
+          start: start
+        });
+        var bounce = ol.animation.bounce({
+          duration: duration,
+          resolution: 4 * view.getResolution(),
+          start: start
+        });
+        map.beforeRender(pan, bounce);
+        view.setCenter(searchcountry);
+      }, false);

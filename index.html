@@ -1,119 +1,61 @@
 <!doctype html>
 <html lang='en'>
-    <head>
+  <head>
 
-		<title>Map My Article</title>
-		<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,400italic' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/ol.css" />
-	    <link rel='stylesheet' href='css/feedmapper.css' />
-	    <link rel="stylesheet" href="css/prism.css" type="text/css">
-	    <link rel="stylesheet" href="css/chosen.css">  
-		<script src="js/haiti.geojson" type="text/javascript"></script>
-		<meta charset='utf8'>
+    <title>Map My Article</title>
+      <meta charset='utf8'>
+      <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,400italic' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="http://openlayers.org/en/v3.15.1/css/ol.css" type="text/css">
+      <link rel='stylesheet' href='css/feedmapper.css' />
+      <link rel="stylesheet" href="css/prism.css" type="text/css">
+      <link rel="stylesheet" href="css/chosen.css">  
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+      <script src="js/chosen.jquery.min.js" type="text/javascript"></script>
+      <script src="js/prism.js" type="text/javascript" charset="utf-8"></script>
+      <script src="http://openlayers.org/en/v3.15.1/build/ol.js"></script>
 
-	</head>
+  </head>
 
-	<body>
+  <body>
 
-		<h1>Map My Article</h1>
-		
-		<main class="article-container">	
-		<p>search for a global development article on the Guardian</p>
-		
-			<section>
-				<form id='article-search'>
-	            <div class="side-by-side clearfix">
+    <h1>Map My Article</h1>
+    
+    <main class="article-container">  
+    <p>search for a global development article on the Guardian</p>
+      <section>
+        <form id='article-search'>
+          <div class="side-by-side clearfix">
 
-	                  <select id="country" data-placeholder="choose country" style="width:350px;" class="chosen-select-deselect" tabindex="12">
-	                        <script src="js/country_dropdown.js"></script>
-	                  </select>
+          <select id="country" data-placeholder="choose country" style="width:350px;" class="chosen-select-deselect" tabindex="12">
+                <script src="js/country_dropdown.js"></script>
+          </select>
 
-	      			<button type='submit'>search</button>
+          <button type='submit' id="fly-to-country">search</button>
+      
+        </section>
 
-	     	 		<input type="button" value="reset" onClick="window.location.reload()">
-	  
-			      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
-			      <script src="js/chosen.jquery.min.js" type="text/javascript"></script>
-			      <script src="js/prism.js" type="text/javascript" charset="utf-8"></script>
-
-				  <script type="text/javascript">
-				    var config = {
-				      '.chosen-select'           : {},
-				      '.chosen-select-deselect'  : {allow_single_deselect:true},
-				      '.chosen-select-no-single' : {disable_search_threshold:10},
-				      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-				      '.chosen-select-width'     : {width:"95%"}
-				    }
-				    for (var selector in config) {
-				      $(selector).chosen(config[selector]);
-				    }
-				    </script>
-	    
-  			</section>
-
-			<br clear="all">
+        <br clear="all">
         
-		</main>
+    <script src='js/searchresults.js'></script>
+    </main>
+    
 
-      	<aside>
-			<div class="container-fluid">
-				<div id="map">
-					<input type="button" id="zoomtocountry" value="zoom to Haiti">
-			      </button>
-				</div>
-			</div>
-      	</aside>
+    <aside>
+      <div class="container-fluid">
+        <div id="map">
+            </button>
+        </div>
+      </div>
+    </aside>
 
-		<script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
-		<script src='js/ol.js'></script>
-		<script src="js/chosen.jquery.min.js" type="text/javascript"></script>
-		<script src='js/common.js'></script>
-		<script src="js/prism.js" type="text/javascript" charset="utf-8"></script>
-		<script src='js/map.js'></script>	
-
-		<script>
-		$(document).ready(function(){
-			$('#article-search').on('submit', function(e){
-				e.preventDefault();
-
-	                  //remove results first
-	                  // $('.summary').remove()
-
-				var url = 'http://content.guardianapis.com/search?section=global-development&page-size=20&q=' + $('#country').val() + '&api-key=test';
-
-				var searchData = $.get(url, function(results){
-
-					if(results.response.total == 0) {
-						alert('Could not find any content.');
-
-					} else {
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][0]['webUrl'] + '" target="_blank"> ' + results['response']['results'][0]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][1]['webUrl'] + '" target="_blank"> ' + results['response']['results'][1]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][2]['webUrl'] + '" target="_blank"> ' + results['response']['results'][2]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][3]['webUrl'] + '" target="_blank"> ' + results['response']['results'][3]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][4]['webUrl'] + '" target="_blank"> ' + results['response']['results'][4]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][5]['webUrl'] + '" target="_blank"> ' + results['response']['results'][5]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][6]['webUrl'] + '" target="_blank"> ' + results['response']['results'][6]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][7]['webUrl'] + '" target="_blank"> ' + results['response']['results'][7]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][8]['webUrl'] + '" target="_blank"> ' + results['response']['results'][8]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][9]['webUrl'] + '" target="_blank"> ' + results['response']['results'][9]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][10]['webUrl'] + '" target="_blank"> ' + results['response']['results'][10]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][11]['webUrl'] + '" target="_blank"> ' + results['response']['results'][11]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][12]['webUrl'] + '" target="_blank"> ' + results['response']['results'][12]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][13]['webUrl'] + '" target="_blank"> ' + results['response']['results'][13]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][14]['webUrl'] + '" target="_blank"> ' + results['response']['results'][14]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][15]['webUrl'] + '" target="_blank"> ' + results['response']['results'][15]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][16]['webUrl'] + '" target="_blank"> ' + results['response']['results'][16]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][17]['webUrl'] + '" target="_blank"> ' + results['response']['results'][17]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][18]['webUrl'] + '" target="_blank"> ' + results['response']['results'][18]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-						$('<article class="summary"><section class="title"><a href=" ' + results['response']['results'][19]['webUrl'] + '" target="_blank"> ' + results['response']['results'][19]['webTitle'] + '</a></p></strong></article>').appendTo('.article-container');
-					}
-
-				})
-			})
-		})
-		</script>
-
-	</body>
+    <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
+    <script src="js/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src='js/common.js'></script>
+    <script src="js/prism.js" type="text/javascript" charset="utf-8"></script>
+    <!-- // <script src="js/haiti.geojson" type="text/javascript"></script> -->
+    <script src='js/map.js'></script> 
 
 
+
+  </body>
