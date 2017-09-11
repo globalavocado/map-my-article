@@ -2,7 +2,7 @@
 
 <h1>Map My Article</h1>
 
-This web app does a fuzzy search on the <a href="http://www.isi-web.org/component/content/article/5-root/root/81-developing">ISI list of developing countries for 2014</a>. On the left, the Guardian API returns a list of news article links and on the right side, the OpenLayers API zooms into that country on a world map.
+This web app does a fuzzy search on the <a href="https://www.isi-web.org/index.php/resources/developing-countries">ISI list of developing countries for 2017</a>. On the left, the Guardian API returns a list of news article links and on the right side, the OpenLayers API zooms into that country on a world map.
 
 <h2>Technologies</h2>
 - JavaScript
