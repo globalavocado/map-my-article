@@ -9,6 +9,18 @@ body {
     height: 500px;
 }
 
+button.chosen-button {
+  border: 1px solid #aaa;
+  background: linear-gradient(#fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
+  background-image: linear-gradient(#fff 50%, #eee 50%);
+  border-radius: 5px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  line-height:22px;
+  -webkit-box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+
 .article-container {
   float: left;
   width: 40%;
