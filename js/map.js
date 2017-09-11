@@ -26,20 +26,60 @@
         view: view
       });
 
-      var flyToCountry = document.getElementById('fly-to-country');
-      flyToCountry.addEventListener('click', function() {
+      // A bounce easing method (from https://github.com/DmitryBaranovskiy/raphael).
+      function bounce(t) {
+        var s = 7.5625, p = 2.75, l;
+        if (t < (1 / p)) {
+          l = s * t * t;
+        } else {
+          if (t < (2 / p)) {
+            t -= (1.5 / p);
+            l = s * t * t + 0.75;
+          } else {
+            if (t < (2.5 / p)) {
+              t -= (2.25 / p);
+              l = s * t * t + 0.9375;
+            } else {
+              t -= (2.625 / p);
+              l = s * t * t + 0.984375;
+            }
+          }
+        }
+        return l;
+      }
+
+            function onClick(id, callback) {
+        document.getElementById(id).addEventListener('click', callback);
+      };
+
+      function flyToCountry(location, done) {
         var duration = 2000;
-        var start = +new Date();
-        var pan = ol.animation.pan({
-          duration: duration,
-          source: /** @type {ol.Coordinate} */ (view.getCenter()),
-          start: start
-        });
-        var bounce = ol.animation.bounce({
-          duration: duration,
-          resolution: 4 * view.getResolution(),
-          start: start
-        });
-        map.beforeRender(pan, bounce);
-        view.setCenter(searchcountry);
-      }, false);
+        var zoom = view.getZoom();
+        var parts = 2;
+        var called = false;
+        function callback(complete) {
+          --parts;
+          if (called) {
+            return;
+          }
+          if (parts === 0 || !complete) {
+            called = true;
+            done(complete);
+          }
+        }
+        view.animate({
+          center: location,
+          duration: duration
+        }, callback);
+        view.animate({
+          zoom: zoom - 1,
+          duration: duration / 2
+        }, {
+          zoom: zoom,
+          duration: duration / 2
+        }, callback);
+      }
+
+        onClick('fly-to-country', function() {
+        flyToCountry(searchcountry, function() {});
+      });
