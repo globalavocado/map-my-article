@@ -1,4 +1,3 @@
-      var searchcountry = ol.proj.fromLonLat([-72, 19.5]);
       var europe = ol.proj.fromLonLat([2.5, 51.9]);
       
       var view = new ol.View({
@@ -81,5 +80,9 @@
       }
 
         onClick('fly-to-country', function() {
-        flyToCountry(searchcountry, function() {});
-      });
+          var countryIndex = $('#country').val();
+          var lat = countryList[countryIndex].lat
+          var lng = countryList[countryIndex].lng
+          var searchcountry = ol.proj.fromLonLat([lng, lat]);
+          flyToCountry(searchcountry, function() {});
+        });

@@ -16,7 +16,9 @@
         //remove results first
         $('.summary').remove()
 
-          var request = 'http://content.guardianapis.com/search?section=global-development&page-size=20&q=' + $('#country').val() + '&api-key=test';
+          var countryIndex = $('#country').val();
+
+          var request = 'http://content.guardianapis.com/search?section=global-development&page-size=20&q=' + countryList[countryIndex].name + '&api-key=test';
 
           $.ajax({
             cache: false,
