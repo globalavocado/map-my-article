@@ -1,26 +1,29 @@
 [![Code Climate](https://codeclimate.com/github/globalavocado/map-my-article/badges/gpa.svg)](https://codeclimate.com/github/globalavocado/map-my-article)
 
-<h1>Map My Article</h1>
+# Map My Article
 
-This web app does a fuzzy search on the <a href="https://www.isi-web.org/index.php/resources/developing-countries">ISI list of developing countries for 2017</a>. On the left, the Guardian API returns a list of news article links and on the right side, the OpenLayers API zooms into that country on a world map.
+This web app does a fuzzy search on the [ISI list of developing countries for 2017](https://www.isi-web.org/index.php/resources/developing-countries). On the left, the Guardian API returns a list of news article links and on the right side, the OpenLayers API zooms into that country on a world map.
 
-<h2>Technologies</h2>
-- JavaScript
-- OpenLayersJS
-- Chosen jQuery plugin
-- Guardian API
-- HTML5
-- CSS3
-- Prism.js
+## Technologies
 
-<h2>Objectives</h2>
+- map: [OpenLayersJS 4.3.2](https://www.openlayers.org/)
+- dropdown menu: [Chosen.js](https://harvesthq.github.io/chosen/)  jQuery library, with [Prism.js](http://prismjs.com/) syntax highlighter
+- article search: [Guardian API](http://open-platform.theguardian.com/documentation/)
+- HTML/CSS3
 
-The map is meant to zoom to the country that is searched for, every time a new search is performed. The name of that country is retrieved from the search value. I am implementing OpenLayers3 <a href="http://openlayers.org/en/v3.4.0/examples/animation.html">OpenLayers Animation</a> to animate the map window.
 
-_Wish list:_
-- search by article tag instead of title keyword.
+## Objectives
 
-<h2>User Stories</h2>
+The map is meant to zoom to the country that has been searched for, every time a new search is performed. The name of that country is retrieved from the search value and implements the [OpenLayers Animation](http://openlayers.org/en/v4.3.2/examples/animation.html).
+
+### Project status
+
+not much styling but fully functional :smiley:
+
+_Wish List:_ ability to sort articles by date or filter by tag
+
+
+## User Stories
 
 This project is a static frontend site, so development is behaviour-driven rather than having been unit-tested.
 
@@ -29,17 +32,3 @@ This project is a static frontend site, so development is behaviour-driven rathe
 - As a user, I want to get a list of Guardian articles when I search for a county.
 
 - As a user, I want to see a map of the country I searched for on the right hand side after I click search.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
