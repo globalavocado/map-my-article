@@ -4,6 +4,19 @@
 
 This web app does a fuzzy search on the [ISI list of developing countries for 2017](https://www.isi-web.org/index.php/resources/developing-countries). On the left, the Guardian API returns a list of news article links and on the right side, the OpenLayers API zooms into that country on a world map.
 
+<img src="https://github.com/globalavocado/map-my-article/blob/master/images/screenshot.png" alt="screenshot" width="75%" height="75%">
+
+## how to run
+
+After cloning the repo, go to the map-my-article folder and start a web server, e.g. on MacOS you can use the built-in SimpleHTTPServer:
+
+~~~
+  ... $ python -m SimpleHTTPServer 8000 
+~~~
+
+then open a browser at http://localhost:8000
+
+
 ## Technologies
 
 - map: [OpenLayersJS 4.3.2](https://www.openlayers.org/)
